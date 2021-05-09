@@ -30,7 +30,7 @@ std::string IMessage::getAsStr() const noexcept {
 //UsbDeviceMessage
 UsbDeviceMessage::UsbDeviceMessage(size_t priority,
 	size_t port, 
-	int operationNum,
+	size_t operationNum,
 	std::string deviceName) noexcept 
 {
 	setPriority(priority);
@@ -64,5 +64,36 @@ size_t UsbDeviceMessage::getPort() const noexcept {
 std::string UsbDeviceMessage::getAsStr() const noexcept {
 	std::stringstream ss;
 	ss << "Port " << this->getPort() << ": " << this->getDeviceName() << " " <<this->getOperation();
+	return ss.str();
+}
+
+//FanSpeedMessage
+FanSpeedMessage::FanSpeedMessage(size_t priority,
+	size_t operationNum,
+	size_t percentage) noexcept
+{
+	setPriority(priority);
+	this->percentage = percentage;
+	switch (operationNum) {
+	case 0:
+		this->operation = "increased";
+		break;
+	case 1:
+		this->operation = "decreased";
+		break;
+	}
+}
+
+size_t FanSpeedMessage::getPercentage() const noexcept {
+	return this->percentage;
+}
+
+std::string FanSpeedMessage::getOperation() const noexcept {
+	return this->operation;
+}
+
+std::string FanSpeedMessage::getAsStr() const noexcept {
+	std::stringstream ss;
+	ss << "Fan speed " << this->getOperation() << " to " << this->getPercentage() << "%";
 	return ss.str();
 }
