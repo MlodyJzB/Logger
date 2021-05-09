@@ -2,12 +2,31 @@
 #include <string>
 class IMessage
 {
-private:
+protected:
 	std::string priority;
+	void setPriority(const size_t priority) noexcept;
 public:
-	IMessage(int priority = 0) noexcept;
-	void setPriority() noexcept;
+	~IMessage();
 	std::string getPriority() const noexcept;
-	void show() const noexcept;
+	virtual std::string getAsStr() const noexcept;
+};
+
+
+class UsbDeviceMessage : public IMessage
+{
+private:
+	size_t port;
+	std::string deviceName;
+	std::string operation;
+public:
+	UsbDeviceMessage(size_t priority,
+		size_t port,
+		int operationNum,
+		std::string deviceName) noexcept;
+
+	std::string getDeviceName() const noexcept;
+	std::string getOperation() const noexcept;
+	size_t getPort() const noexcept;
+	virtual std::string getAsStr() const noexcept;
 };
 
