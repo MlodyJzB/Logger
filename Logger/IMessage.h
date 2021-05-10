@@ -42,6 +42,6 @@ public:
 
 	size_t getPercentage() const noexcept;
 	std::string getOperation() const noexcept;
-	virtual std::string getAsStr() const noexcept;
+	std::string getAsStr() const noexcept;
 };
 
