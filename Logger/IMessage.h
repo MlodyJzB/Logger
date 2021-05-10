@@ -1,14 +1,18 @@
 #pragma once
 #include <string>
+#include <chrono>
+
 class IMessage
 {
 protected:
 	std::string priority;
 	void setPriority(const size_t priority) noexcept;
+	std::chrono::time_point<std::chrono::system_clock> addedTime;
 public:
 	~IMessage();
 	std::string getPriority() const noexcept;
 	virtual std::string getAsStr() const noexcept;
+	void setTimeAdded() noexcept;
 };
 
 

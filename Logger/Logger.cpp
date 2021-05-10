@@ -5,6 +5,7 @@
 Loggers::Loggers() noexcept{}
 
 void Loggers::add(IMessage & message) noexcept {
+	message.setTimeAdded();
 	this->messages.push_back(&message);
 }
 
