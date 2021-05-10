@@ -4,7 +4,6 @@
 #include <chrono>
 
 
-
 class Loggers
 {
 private:
@@ -12,6 +11,21 @@ private:
 public:
 	Loggers() noexcept;
 	void add(IMessage &message) noexcept;
-	IMessage* getMessage(size_t i);
+	IMessage* getMessagePtr(size_t i);
+
+	class ErrorIterator {
+		friend Loggers;
+	private:
+		std::vector<IMessage*>::iterator current;
+		std::vector<IMessage*>& collection;
+	public:
+		ErrorIterator(std::vector<IMessage*>& col, std::vector<IMessage*>::iterator const i);
+		IMessage*& operator*();
+
+		ErrorIterator& operator++();
+	};
+
+	ErrorIterator begin();
+	ErrorIterator end();
 };
 

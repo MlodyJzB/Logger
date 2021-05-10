@@ -27,6 +27,12 @@ std::string IMessage::getAsStr() const noexcept {
 	return "";
 }
 
+std::ostream& operator<< (std::ostream& stream, const IMessage & message)
+{
+	stream << message.getAsStr();
+	return stream;
+}
+
 //UsbDeviceMessage
 UsbDeviceMessage::UsbDeviceMessage(size_t priority,
 	size_t port, 

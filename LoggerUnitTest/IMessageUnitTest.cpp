@@ -55,6 +55,16 @@ namespace IMessageUnitTest
 			Assert::AreEqual(message2.getAsStr(), expectedStr2);
 		}
 
+		TEST_METHOD(IMessageOperatorOS)
+		{
+			FanSpeedMessage message(0, 1, 40);
+			std::string expectedStr = "Fan speed decreased to 40%";
+			std::ostringstream stream;
+			stream << message;
+			Assert::AreEqual(message.getAsStr(), expectedStr);
+
+		}
+
 	
 	};
 }

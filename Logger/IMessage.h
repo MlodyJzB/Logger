@@ -45,3 +45,4 @@ public:
 	std::string getAsStr() const noexcept;
 };
 
+std::ostream& operator<< (std::ostream& stream, const IMessage& message);
