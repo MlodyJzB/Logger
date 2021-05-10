@@ -13,6 +13,7 @@ public:
 	std::string getPriority() const noexcept;
 	virtual std::string getAsStr() const noexcept;
 	void setTimeAdded() noexcept;
+	std::chrono::time_point<std::chrono::system_clock> getTimeAdded() noexcept;
 };
 
 

@@ -31,6 +31,10 @@ void IMessage::setTimeAdded() noexcept {
 	this->addedTime = std::chrono::system_clock::now();
 }
 
+std::chrono::time_point<std::chrono::system_clock> IMessage::getTimeAdded() noexcept {
+	return this->addedTime;
+}
+
 std::ostream& operator<< (std::ostream& stream, const IMessage & message)
 {
 	stream << message.getAsStr();
